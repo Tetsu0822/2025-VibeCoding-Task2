@@ -1,62 +1,93 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Alex Chen · Frontend Dev — 個人品牌網站</title>
-  <meta name="description" content="個人品牌網站範本：介紹前端工程師的背景、技能與作品集，含聯絡方式與作品展示。此頁為骨架（Phase 1），各區塊為占位內容，方便後續以 Section SDD 替換完整內容。" />
+  <meta name="description"
+    content="個人品牌網站範本：介紹前端工程師的背景、技能與作品集，含聯絡方式與作品展示。此頁為骨架（Phase 1），各區塊為占位內容，方便後續以 Section SDD 替換完整內容。" />
   <style>
     /* ================================
        CSS:BASE-START
        全站基底樣式（禁止使用 ID 選擇器）
        ================================ */
-    :root{
-      --bg:#071028; /* 深藍/青色基底 */
-      --panel:#0b1630;
-      --muted:#9aa6b2;
-      --text:#e6eef6;
-      --accent:#2ea6d6; /* 主色，偏青色 */
-      --radius:12px;
-      --max-width:1100px;
+    :root {
+      --bg: #071028;
+      /* 深藍/青色基底 */
+      --panel: #0b1630;
+      --muted: #9aa6b2;
+      --text: #e6eef6;
+      --accent: #2ea6d6;
+      /* 主色，偏青色 */
+      --radius: 12px;
+      --max-width: 1100px;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html,body { height:100%; }
-    body{
-      margin:0;
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
       background: linear-gradient(180deg, var(--bg) 0%, #051226 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.6;
-      font-size:16px;
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      font-size: 16px;
     }
 
-    .page{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
     }
 
-    .container{
-      width:100%;
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:0 16px;
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 16px;
     }
 
-    img{ max-width:100%; height:auto; display:block; border-radius:8px; }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
 
-    a{ color:var(--accent); text-decoration:none; }
-    a:hover, a:focus{ text-decoration:underline; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-    .visually-hidden{
-      position:absolute !important;
-      height:1px; width:1px;
-      overflow:hidden; clip:rect(1px,1px,1px,1px);
-      white-space:nowrap; border:0; padding:0; margin:-1px;
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px;
+      width: 1px;
+      overflow: hidden;
+      clip: rect(1px, 1px, 1px, 1px);
+      white-space: nowrap;
+      border: 0;
+      padding: 0;
+      margin: -1px;
     }
 
     /* ================================
@@ -67,17 +98,17 @@
        CSS:HERO-START
        Hero 區樣式（只使用 class / element 選擇器）
        ================================ */
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:50;
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-      background: rgba(6,12,24,0.55);
-      border-bottom:1px solid rgba(255,255,255,0.03);
+      background: rgba(6, 12, 24, 0.55);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
 
-    .nav{
+    /* .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -101,95 +132,121 @@
       gap:12px;
       align-items:center;
       flex-wrap:wrap;
+    } */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      /* 允許換行，避免溢出 */
     }
 
-    .nav-link{
-      display:inline-block;
-      padding:8px 10px;
-      border-radius:8px;
-      color:var(--muted);
-      font-size:0.95rem;
-    }
-    .nav-link:hover, .nav-link:focus{
-      color:var(--text);
-      background: rgba(255,255,255,0.02);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.02) inset;
+    .site-logo {
+      flex-shrink: 0;
+      /* 避免被壓縮，但也不會撐破布局 */
     }
 
-    header .cta-link{
-      margin-left:8px;
-      padding:8px 12px;
-      background:transparent;
-      border:1px solid rgba(46,166,214,0.12);
-      color:var(--accent);
-      border-radius:10px;
-      font-weight:600;
-      font-size:0.92rem;
+    .nav-list {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      /* 避免連結太多把 nav 撐出螢幕 */
+      justify-content: flex-end;
     }
 
-    main { flex:1; }
-
-    .section{
-      padding:48px 0;
+    .nav-link {
+      display: inline-block;
+      padding: 8px 10px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
-    .section .section-title{
-      margin:0 0 12px 0;
-      font-size:1.125rem;
-      color:var(--text);
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+    }
+
+    header .cta-link {
+      margin-left: 8px;
+      padding: 8px 12px;
+      background: transparent;
+      border: 1px solid rgba(46, 166, 214, 0.12);
+      color: var(--accent);
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      padding: 48px 0;
+    }
+
+    .section .section-title {
+      margin: 0 0 12px 0;
+      font-size: 1.125rem;
+      color: var(--text);
     }
 
     /* Hero specific */
-    .section-hero{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding-top:64px;
-      padding-bottom:48px;
-      min-height:56vh;
+    .section-hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 64px;
+      padding-bottom: 48px;
+      min-height: 56vh;
     }
 
-    .hero-inner{
-      display:flex;
-      gap:24px;
-      width:100%;
-      align-items:center;
-      justify-content:space-between;
-      flex-direction:column;
-      text-align:center;
+    .hero-inner {
+      display: flex;
+      gap: 24px;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: column;
+      text-align: center;
     }
 
-    .hero-copy{
-      max-width:760px;
+    .hero-copy {
+      max-width: 760px;
     }
 
-    .hero h1{
-      margin:0 0 12px 0;
-      font-size:1.6rem;
-      line-height:1.15;
-      color:var(--text);
+    .hero h1 {
+      margin: 0 0 12px 0;
+      font-size: 1.6rem;
+      line-height: 1.15;
+      color: var(--text);
     }
 
-    .hero p{
-      margin:0 0 12px 0;
-      color:var(--muted);
-      font-size:0.98rem;
+    .hero p {
+      margin: 0 0 12px 0;
+      color: var(--muted);
+      font-size: 0.98rem;
     }
 
-    .hero-visual{
-      width:100%;
-      max-width:520px;
-      margin-top:20px;
+    .hero-visual {
+      width: 100%;
+      max-width: 520px;
+      margin-top: 20px;
     }
 
-    .note-replace{
-      margin-top:12px;
-      font-size:0.88rem;
-      color:var(--muted);
-      background: rgba(255,255,255,0.015);
-      padding:10px;
-      border-radius:8px;
-      border:1px dashed rgba(255,255,255,0.02);
+    .note-replace {
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.015);
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px dashed rgba(255, 255, 255, 0.02);
     }
 
     /* ================================
@@ -200,23 +257,23 @@
        CSS:ABOUT-START
        About 區樣式
        ================================ */
-    .section-about .about-grid{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-      align-items:stretch;
+    .section-about .about-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      align-items: stretch;
     }
 
-    .about-card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:18px;
-      border-radius:var(--radius);
-      border:1px solid rgba(255,255,255,0.03);
+    .about-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.03);
     }
 
-    .about-visual{
-      width:100%;
-      max-width:520px;
+    .about-visual {
+      width: 100%;
+      max-width: 520px;
     }
 
     /* ================================
@@ -227,20 +284,20 @@
        CSS:SKILLS-START
        Skills 區樣式
        ================================ */
-    .skill-list{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-top:12px;
+    .skill-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
     }
 
-    .skill-pill{
-      padding:8px 10px;
-      background: rgba(255,255,255,0.02);
-      border-radius:999px;
-      font-size:0.9rem;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.02);
+    .skill-pill {
+      padding: 8px 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.02);
     }
 
     /* ================================
@@ -251,26 +308,26 @@
        CSS:PROJECTS-START
        Projects 區樣式
        ================================ */
-    .projects-grid{
-      display:grid;
-      gap:16px;
-      grid-template-columns:1fr;
-      margin-top:16px;
+    .projects-grid {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+      margin-top: 16px;
     }
 
-    .project-card{
-      padding:14px;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-      border:1px solid rgba(255,255,255,0.03);
+    .project-card {
+      padding: 14px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.03);
     }
 
-    .project-thumb{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-      border-radius:8px;
-      margin-bottom:10px;
+    .project-thumb {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
 
     /* ================================
@@ -281,27 +338,27 @@
        CSS:CONTACT-START
        Contact 區樣式
        ================================ */
-    .contact-list{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      margin-top:12px;
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
     }
 
-    .contact-item{
-      color:var(--muted);
-      font-size:0.95rem;
-      display:flex;
-      gap:10px;
-      align-items:center;
+    .contact-item {
+      color: var(--muted);
+      font-size: 0.95rem;
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
 
-    .footer{
-      padding:22px 0;
-      text-align:center;
-      color:var(--muted);
-      font-size:0.9rem;
-      border-top:1px solid rgba(255,255,255,0.02);
+    .footer {
+      padding: 22px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
     }
 
     /* ================================
@@ -312,28 +369,55 @@
        CSS:RWD-START
        RWD 媒體查詢（手機優先）
        ================================ */
-    @media (min-width: 580px){
-      .hero-inner{ flex-direction:row; text-align:left; align-items:center; }
-      .hero-copy{ flex:1; }
-      .hero-visual{ flex:1; margin-top:0; }
+    @media (min-width: 580px) {
+      .hero-inner {
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+      }
+
+      .hero-copy {
+        flex: 1;
+      }
+
+      .hero-visual {
+        flex: 1;
+        margin-top: 0;
+      }
     }
 
-    @media (min-width: 768px){
-      .section{ padding:72px 0; }
-      .hero h1{ font-size:2rem; }
-      .projects-grid{ grid-template-columns: repeat(2, 1fr); }
-      .section-about .about-grid{ flex-direction:row; align-items:center; }
+    @media (min-width: 768px) {
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-about .about-grid {
+        flex-direction: row;
+        align-items: center;
+      }
     }
 
-    @media (min-width: 1200px){
-      .hero h1{ font-size:2.4rem; }
+    @media (min-width: 1200px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
     }
+
     /* ================================
        CSS:RWD-END
        ================================ */
   </style>
   <title>2025-VibeCoding-Task2</title>
 </head>
+
 <body>
   <div class="page">
     <header class="site-header" role="banner">
@@ -362,7 +446,9 @@
           </div>
 
           <figure class="hero-visual" aria-hidden="false">
-            <img src="https://images.unsplash.com/photo-1618424599646-14f0a25990f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGV2ZWxvcGVyJTJDbGFwdG9wJTJDd29ya3NwYWNlfGVufDB8fDB8fHwwdeveloper,laptop,workspace" alt="在筆電前撰寫程式碼的前端開發者" loading="lazy" />
+            <img
+              src="https://images.unsplash.com/photo-1618424599646-14f0a25990f1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZGV2ZWxvcGVyJTJDbGFwdG9wJTJDd29ya3NwYWNlfGVufDB8fDB8fHwwdeveloper,laptop,workspace"
+              alt="在筆電前撰寫程式碼的前端開發者" loading="lazy" />
           </figure>
         </div>
       </section>
@@ -380,7 +466,9 @@
 
             <div class="about-card">
               <figure aria-hidden="false">
-                <img src="https://images.unsplash.com/photo-1618424562492-f778e25652a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGRldmVsb3BlciUyQ2xhcHRvcCUyQ3dvcmtzcGFjZXxlbnwwfHwwfHx8MA%3D%3D" alt="整潔的工作環境與筆電，象徵前端開發工作情境" loading="lazy" class="about-visual" />
+                <img
+                  src="https://images.unsplash.com/photo-1618424562492-f778e25652a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGRldmVsb3BlciUyQ2xhcHRvcCUyQ3dvcmtzcGFjZXxlbnwwfHwwfHx8MA%3D%3D"
+                  alt="整潔的工作環境與筆電，象徵前端開發工作情境" loading="lazy" class="about-visual" />
               </figure>
             </div>
           </div>
@@ -416,14 +504,18 @@
 
           <div class="projects-grid" aria-hidden="true">
             <article class="project-card">
-              <img class="project-thumb" src="https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2Vic2l0ZSUyMGNvZGV8ZW58MHx8MHx8fDA%3D" alt="範例專案縮圖：網站截圖風格" loading="lazy" />
+              <img class="project-thumb"
+                src="https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2Vic2l0ZSUyMGNvZGV8ZW58MHx8MHx8fDA%3D"
+                alt="範例專案縮圖：網站截圖風格" loading="lazy" />
               <h3>專案示意 1</h3>
               <p class="muted">短描述：示意用途、關鍵技術。</p>
               <p><a href="https://github.com/yourname" target="_blank" rel="noopener">檢視專案（GitHub）</a></p>
             </article>
 
             <article class="project-card">
-              <img class="project-thumb" src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXBwJTJDdWl8ZW58MHx8MHx8fDA%3D" alt="範例專案縮圖：應用介面風格" loading="lazy" />
+              <img class="project-thumb"
+                src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXBwJTJDdWl8ZW58MHx8MHx8fDA%3D"
+                alt="範例專案縮圖：應用介面風格" loading="lazy" />
               <h3>專案示意 2</h3>
               <p class="muted">短描述：示意用途、關鍵技術。</p>
               <p><a href="https://github.com/yourname" target="_blank" rel="noopener">檢視專案（GitHub）</a></p>
@@ -441,10 +533,13 @@
           <p>開發者注意：之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。</p>
 
           <div class="contact-list">
-            <div class="contact-item"><strong>Email：</strong><a href="mailto:hello@example.com">hello@example.com</a></div>
+            <div class="contact-item"><strong>Email：</strong><a href="mailto:hello@example.com">hello@example.com</a>
+            </div>
             <div class="contact-item"><strong>電話：</strong><a href="tel:+886900000000">+886 900 000 000</a></div>
-            <div class="contact-item"><strong>GitHub：</strong><a href="https://github.com/yourname" target="_blank" rel="noopener">https://github.com/yourname</a></div>
-            <div class="contact-item"><strong>LinkedIn：</strong><a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener">https://www.linkedin.com/in/yourname</a></div>
+            <div class="contact-item"><strong>GitHub：</strong><a href="https://github.com/yourname" target="_blank"
+                rel="noopener">https://github.com/yourname</a></div>
+            <div class="contact-item"><strong>LinkedIn：</strong><a href="https://www.linkedin.com/in/yourname"
+                target="_blank" rel="noopener">https://www.linkedin.com/in/yourname</a></div>
           </div>
         </div>
       </section>
@@ -458,4 +553,5 @@
     </footer>
   </div>
 </body>
+
 </html>
