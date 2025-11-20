@@ -108,31 +108,6 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     }
 
-    /* .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:12px 0;
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding-left:16px;
-      padding-right:16px;
-    }
-
-    .site-logo{
-      font-weight:600;
-      letter-spacing:0.2px;
-      color:var(--text);
-      font-size:0.98rem;
-    }
-
-    .nav-list{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      flex-wrap:wrap;
-    } */
     .nav {
       display: flex;
       align-items: center;
@@ -257,24 +232,58 @@
        CSS:ABOUT-START
        About 區樣式
        ================================ */
-    .section-about .about-grid {
+    /* About 區塊額外樣式補充 */
+    .section-about .highlight-list {
+      margin-top: 16px;
+      padding-left: 20px;
+      color: var(--text);
+      list-style-type: disc;
+    }
+
+    .section-about .highlight-list li {
+      margin-bottom: 8px;
+      font-size: 0.975rem;
+    }
+
+    .section-about .about-actions {
+      margin-top: 24px;
       display: flex;
-      flex-direction: column;
-      gap: 18px;
-      align-items: stretch;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .about-card {
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-      padding: 18px;
+    .section-about .btn-primary,
+    .section-about .btn-secondary {
+      padding: 10px 16px;
       border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, 0.03);
+      font-size: 0.95rem;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .about-visual {
-      width: 100%;
-      max-width: 520px;
+    .section-about .btn-primary {
+      background-color: var(--accent);
+      color: var(--text);
+      border: 1px solid var(--accent);
     }
+
+    .section-about .btn-primary:hover,
+    .section-about .btn-primary:focus {
+      background-color: rgba(46, 166, 214, 0.8);
+    }
+
+    .section-about .btn-secondary {
+      background-color: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .section-about .btn-secondary:hover,
+    .section-about .btn-secondary:focus {
+      background-color: rgba(46, 166, 214, 0.2);
+    }
+
 
     /* ================================
        CSS:ABOUT-END
@@ -458,23 +467,48 @@
       <section id="about" class="section section-about" aria-labelledby="about-heading">
         <div class="container">
           <div class="about-grid">
+
+            <!-- Left column: text -->
             <div class="about-card">
-              <h2 id="about-heading" class="section-title">關於我（之後會用 Section SDD 替換）</h2>
-              <p>這裡目前是 About 區的占位內容，說明會放開發者的自我介紹與經歷摘要。</p>
-              <p>開發者注意：之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。</p>
+              <h2 id="about-heading" class="section-title">關於我</h2>
+
+              <p>
+                我是一名前端工程師，平常專注於網頁開發、使用者體驗設計與技術教學，
+                也提供前端相關的接案協助。擅長把設計稿轉成乾淨、穩定、可維護的程式碼，
+                並熟悉現代前端技術與開發流程。
+              </p>
+
+              <p>
+                過去有多種不同領域的協作經驗，也因為常接觸教學與協作，
+                形成了「溝通透明、能把複雜事情講清楚」的工作習慣。
+                喜歡整理知識、把流程標準化，讓合作更順暢。
+              </p>
+
+              <ul class="highlight-list">
+                <li>協助設計 → 前端切版 → 上線的完整開發流程</li>
+                <li>能快速理解需求並提出合適的技術解法</li>
+                <li>適合需要溝通順暢、交付明確的合作方式</li>
+              </ul>
+
+              <div class="about-actions">
+                <a class="btn-primary" href="#projects">查看作品集</a>
+                <a class="btn-secondary" href="#contact">聯絡我</a>
+              </div>
             </div>
 
+            <!-- Right column: image -->
             <div class="about-card">
               <figure aria-hidden="false">
-                <img
-                  src="https://images.unsplash.com/photo-1618424562492-f778e25652a1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGRldmVsb3BlciUyQ2xhcHRvcCUyQ3dvcmtzcGFjZXxlbnwwfHwwfHx8MA%3D%3D"
-                  alt="整潔的工作環境與筆電，象徵前端開發工作情境" loading="lazy" class="about-visual" />
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop&q=60"
+                  alt="專注工作的前端工程師在電腦前撰寫程式碼" loading="lazy" class="about-visual" />
               </figure>
             </div>
+
           </div>
         </div>
       </section>
       <!-- SECTION:ABOUT-END -->
+
 
       <!-- SECTION:SKILLS-START -->
       <section id="skills" class="section section-skills" aria-labelledby="skills-heading">
